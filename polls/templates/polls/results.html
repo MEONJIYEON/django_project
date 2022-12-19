@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+
 <h1>{{question.question_text}}</h1>
 <ul>
   {% for choice in question.choice_set.all %}
   <li>{{choice.choice_text}} -- {{choice.votes}} vote{{choice.votes|pluralize}}</li>
   {% endfor %}
 </ul>
-<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
-<a href="{% url 'polls:chart' question.id %}">Chart</a>
-<a href="{% url 'polls:index' %}">Link To Index</a>
-</body>
-</html>
+<a href="{% url 'polls:detail' question.id %}" class="btn btn-outline-primary">Vote again?</a>
+<a href="{% url 'polls:chart' question.id %}" class="btn btn-outline-primary">Chart</a>
+<a href="{% url 'polls:index' %}" class="btn btn-outline-primary">Link To Index</a>
+
+{% endblock %}

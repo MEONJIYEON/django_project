@@ -61,25 +61,23 @@ def vote(request, question_id):
             selected_choice.votes += 1
             selected_choice.save()
 
-            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+    return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 def make_chart_data(data_question):
-
     my_data = list()
-
     for choice in data_question.choice_set.all():
         my_dict = dict()
         my_dict['name'] = choice.choice_text
         my_dict['y'] = choice.votes
         my_data.append(my_dict)
-
     chart_data = [{
-            'name': 'Votes',
-            'colorByPoint': 'true',
-            'data': my_data,
+        'name': 'Votes',
+        'colorByPoint': 'true',
+        'data': my_data,
         }]
 
     return chart_data
+
 def result_chart(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
 
@@ -87,7 +85,7 @@ def result_chart(request, question_id):
     dump = json.dumps(chart_data)
 
     chart_title = {
-        'text': '투표 결과 <br>' + question.question_text
+        'text': '투표결과 <br>' + question.question_text
     }
 
     dump_title = json.dumps(chart_title)

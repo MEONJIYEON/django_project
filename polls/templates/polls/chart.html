@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends 'base.html' %}
+{% block content %}
     <meta charset="UTF-8">
     <title>Title</title>
     <script src ="https://code.highcharts.com/highcharts.js"></script>
-</head>
-<body>
   <div id="container" style="margin-top: 20px;"></div>
 
   {% load static %}
@@ -13,5 +10,5 @@
   <script type="text/javascript"> var chart_title = {{chart_title|safe}}</script>
 
   <script defer src="{% static 'polls/javascript.js' %}"></script>
-</body>
-</html>
+
+{% endblock %}

@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
+{% block content %}
 <h1>{{question.question_text}}</h1>
 {% if error_message %} <p><strong>{{error_message}}</strong></p>{% endif %}
 <form action="{% url 'polls:vote' question.id %}" method="post">
@@ -14,8 +9,7 @@
         <input type ="checkbox" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}">
         <label for="choice{{forloop.counter}}">{{choice.choice_text}}</label><br>
     {% endfor %}
-    <input type="submit" value="Vote">
-    <a href="{% url 'polls:index' %}">Link To Index</a>
+    <input type="submit" value="Vote" class="btn btn-outline-primary">
+    <a href="{% url 'polls:index' %}" class="btn btn-outline-primary">Link To Index</a>
 </form>
-</body>
-</html>
+{% endblock %}
